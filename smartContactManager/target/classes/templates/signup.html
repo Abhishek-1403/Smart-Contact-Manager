@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Home Page</title>
+</head>
+<body>
+	<section>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+
+					<div class="my-card mt-2">
+
+						<div th:if="${session.message}"
+							th:classappend="${session.message.type}" class="alert"
+							role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+
+							<!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block>  -->  
+
+						</div>
+
+
+						<div class="container text-center">
+							<img class="" style="width: 80px" th:src="@{/img/document.png}"
+								alt="Image not available" />
+						</div>
+
+						<h1 class="text-center">Register Here !!</h1>
+
+						<form action="" th:action="@{/do_register}" method="post"
+							enctype="multipart/form-data">
+
+							
+							
+							<!--  first Field -->
+							<div class="form-group">
+								<labe for="name-field">Your Name</label> <input type="text"
+									name="name" class="form-control" placeholder="Enter Your Name"
+									th:value="${user.name}" required />
+							</div>
+							<!--  Second  Field -->
+							<div class="form-group">
+								<label for="email-field" )>Your Email</label> <input
+									type="email" name="email" class="form-control"
+									placeholder="Enter Your Email" th:value="${user.email}"
+									required />
+							</div>
+
+							<!--  Password  Field -->
+							<div class="form-group">
+								<label for="password-field" )>Enter Password</label> <input
+									type="password" name="password" class="form-control"
+									placeholder="Enter password" required />
+							</div>
+
+							<!-- User About field -->
+							<div class="form-group">
+								<textarea name="about" th:text="${user.about}" rows="6"
+									class="form-control"
+									placeholder="Wirte Something About Yourself.."></textarea>
+							</div>
+							
+							<!-- upload profile image -->
+							<div class="custom-file mt-2 ">
+									<input type="file" name="profileImage">                                                                        
+							</div>
+
+							<!-- Terms and condition Agreement -->
+							<div class="form-group form-check">
+								<input type="checkbox" name="agreement" class="form-check-input"
+									id="agreement" />
+								<lable for="agreement">Accept terms and conditions </lable>
+							</div>
+
+							<div class="container text-center">
+								<button type="submit" class="btn bg-primary text-white mx-2">Submit</button>
+								<button type="reset" class="btn btn-warning text-white ">Reset</button>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

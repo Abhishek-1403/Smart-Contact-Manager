@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Home Page</title>
+</head>
+<body>
+	<section>
+
+	<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+
+					<div class="my-card mt-2">
+						
+						<div class="container text-center mt-2">
+									<img src="" class="img-fluid my_profile_picture" style="width:45%; height:25vh;" th:src="@{'/img/'+${user.imageUrl}}" alt="Oops.. cannot able load image..." />
+						</div>
+
+						<h1 class="text-center">Update Your Contact !!</h1>
+
+						<form action=""  th:object="${user}" th:action="@{/user/save_account}" method="post"
+							enctype="multipart/form-data">
+
+							<!-- for handle response in backend  -->
+							
+							<input type="hidden" th:value="${user.email}" name="oldEmail"/>
+							<input type="hidden" th:value="${user.ImageUrl}" name="oldImage"/>
+							
+							<!--  first Field -->
+							<div class="form-group">
+								<labe for="name-field">Your Name</label> <input type="text"
+									name="name" class="form-control" placeholder="Enter Your Name"
+									th:value="${user.name}" required />
+							</div>
+							<!--  Second  Field -->
+							<div class="form-group">
+								<label for="email-field" )>Your Email OR Username</label> <input
+									type="email" name="email" class="form-control"
+									placeholder="Enter Your Email" th:value="${user.email}"
+									required />
+							</div>
+
+							<!--  Password  Field -->
+							<div class="form-group">
+								<label for="password-field" )>Enter Your Existing password</label> <input
+									type="password" name="password" class="form-control"
+									placeholder="Enter password" required />
+							</div>
+
+							<!-- User About field -->
+							<div class="form-group">
+								<textarea name="about" th:text="${user.about}" rows="6"
+									class="form-control"
+									placeholder="Wirte Something About Yourself.."></textarea>
+							</div>
+							
+							<p class="text-secondary">Choose new profile pic</p>
+							<!-- upload profile image -->
+							<div class="custom-file mt-2 ">
+									<input type="file" name="profileImage">                                                                        
+							</div>
+
+							<div class="container text-center">
+								<button type="submit" class="btn bg-primary text-white mx-2">Submit</button>
+								<button type="reset" class="btn btn-warning text-white ">Reset</button>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+</html>
